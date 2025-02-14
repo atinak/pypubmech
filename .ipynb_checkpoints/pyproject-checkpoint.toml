@@ -1,0 +1,46 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pypubmech"
+version = "0.1"
+authors = [
+    { name = "Anass Tinakoua", email = "a.tinakoua@gmail.com" },
+]
+description = "A Python package for fetching PubMed articles with MeSH support"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "metapub",
+    "pandas",
+    "biopython",
+    "tqdm",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["pypubmech"]
+
+[tool.hatch.build]
+only-packages = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-ra -q"
+
+[tool.black]
+line-length = 88
+include = '\.pyi?$'
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "black",
+    "isort",
+    # any other development tools you're using
+]
